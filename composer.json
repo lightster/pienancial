@@ -1,0 +1,19 @@
+{
+    "name": "lightster/pienancial",
+    "description": "Breaking down finances into different pies",
+    "keywords": [
+        "pienancial",
+        "finances"
+    ],
+    "homepage": "http://mattlight.com",
+    "autoload": {
+        "psr-0": {
+            "Pienancial\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.19",
+        "silex/silex": "~1.1",
+        "lightster/lstr-silex": "~0.2"
+    }
+}
