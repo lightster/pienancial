@@ -10,6 +10,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Pienancial\Application\Controller\Provider as AppControllerProvider;
 use Pienancial\Application\Service\Provider as AppServiceProvider;
 
 use Lstr\Silex\Asset\AssetServiceProvider;
@@ -24,14 +25,17 @@ $app->register(new AppServiceProvider());
 $app->register(new AssetServiceProvider());
 $app->register(new ConfigServiceProvider());
 $app->register(new DatabaseServiceProvider());
+$app->register(new TemplateServiceProvider());
 
 $app['debug'] = false;
 if (isset($app['config']['debug'])) {
     $app['debug'] = $app['config']['debug'];
 }
 
-$app->get('/', function (Application $app) {
-    return '';
+$app->mount('/app', new AppControllerProvider());
+
+$app->get('/', function () use ($app) {
+    return $app->redirect('/app/');
 });
 
 
